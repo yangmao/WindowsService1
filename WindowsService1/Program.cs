@@ -21,7 +21,7 @@ namespace WindowsService1
                 new Service1()
             };
             ServiceBase.Run(ServicesToRun);
-            //asdfasdfasdfasdf
+            //asdfasdfasdfasdfhfdghfgh
         }
     }
 }
