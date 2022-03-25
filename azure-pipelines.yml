@@ -29,11 +29,6 @@ steps:
 
 - task: VSTest@2
   inputs:
-- task: CopyPublishBuildArtifacts@1
-  inputs:
-    Contents: '**'
-    ArtifactName: 'build'
-    ArtifactType: 'FilePath'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     
@@ -42,3 +37,4 @@ steps:
     SourceFolder: '$(system.defaultworkingdirectory)'
     Contents: '**\bin\$(BuildConfigration)\**'
     TargetFolder: '$(build.artifactstagingdirectory)'
+    
