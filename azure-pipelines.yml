@@ -29,6 +29,11 @@ steps:
 
 - task: VSTest@2
   inputs:
+- task: CopyPublishBuildArtifacts@1
+  inputs:
+    Contents: '**'
+    ArtifactName: 'build'
+    ArtifactType: 'FilePath'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     
