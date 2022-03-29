@@ -24,22 +24,17 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
+    msbuildArgs: '/p:OUtputPath="$(Build.BinariesDirectory)\$(Build.BuildId)"'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: '**\bin\$(BuildConfigration)\**'
-    TargetFolder: '$(build.artifactstagingdirectory)'
-- task: CopyPublishBuildArtifacts@1
-  inputs:
-    Contents: '**'
-    ArtifactName: 'build'
-    ArtifactType: 'FilePath'
     
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)\$(Build.BuildId)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
+
